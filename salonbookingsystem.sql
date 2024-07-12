@@ -28,41 +28,41 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `booking` (
-  `booking_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `stylist_id` int(11) NOT NULL,
-  `service_id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL
+  `time` time NOT NULL,
+  `price` float NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `booking`
 --
-
-INSERT INTO `booking` (`booking_id`, `customer_id`, `stylist_id`, `service_id`, `date`, `time`) VALUES
-(1, 1, 1, 1, '2024-06-28', '10:00:00'),
-(2, 2, 2, 3, '2024-06-29', '14:00:00');
+INSERT INTO `booking` (`booking_id`, `customer_id`, `stylist_id`, `service_id`, `date`, `time`, `price`) VALUES
+(1, 1, 1, 1, '2024-06-28', '10:00:00', 100),
+(2, 2, 2, 3, '2024-06-29', '14:00:00', 200);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `customer`
 --
-
 CREATE TABLE `customer` (
-  `customer_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `phone_number` varchar(15) NOT NULL
+  `phone_number` varchar(10) NOT NULL,
+  `credit_card_no` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `name`, `phone_number`) VALUES
-(1, 'Alice', '123-456-7890'),
-(2, 'Bob', '987-654-3210');
+INSERT INTO `customer` (`customer_id`, `name`, `phone_number`, `credit_card_no`) VALUES
+(1, 'Alice', '1234567890', '1234567890123456' ),
+(2, 'Bob', '9876543210', '1234567890123456');
 
 -- --------------------------------------------------------
 
@@ -94,9 +94,10 @@ INSERT INTO `service` (`service_id`, `type`, `style`, `price`) VALUES
 --
 
 CREATE TABLE `stylist` (
-  `stylist_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `specialization` varchar(255) NOT NULL
+  `phone_number` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
